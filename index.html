@@ -163,13 +163,22 @@ text-align:center;
 color:#64748b;
 }
 </style>
+  <script>
+  function scrollToTop(e){
+  e.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+</script>
 </head>
 
 <body>
 
 <header id="header">
 <div class="container nav">
-<div class="brand">Alstack</div>
+<a href="#" class="brand" onclick="scrollToTop(event)">Alstack</a>
 
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
