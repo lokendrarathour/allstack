@@ -1,126 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Alstack — Strategic Cloud Architecture Advisory</title>
-<meta name="description" content="Strategic cloud architecture advisory across AWS, Azure, OpenStack, and hybrid environments. Enterprise modernization, governance, and cost optimization." />
+<meta name="description" content="Enterprise cloud architecture advisory across AWS, Azure, OpenStack, hybrid and private environments."/>
 
 <style>
 *,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
 body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  line-height:1.6;
-  background:#f8fafc;
-  color:#0f172a;
-  transition:.4s ease;
+margin:0;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+line-height:1.6;
+background:#f8fafc;
+color:#0f172a;
+transition:.4s ease;
 }
+
 body.dark{
-  background:#0b1220;
-  color:#e5e7eb;
+background:#0b1220;
+color:#e5e7eb;
 }
-a{color:#2563eb;text-decoration:none}
+
 .container{width:min(1120px,92%);margin:auto}
-section{padding:80px 0;opacity:0;transform:translateY(30px);transition:.7s ease}
+section{padding:80px 0;opacity:0;transform:translateY(30px);transition:.7s}
 section.visible{opacity:1;transform:translateY(0)}
 
 .grid{display:grid;gap:24px}
 .grid-2{grid-template-columns:repeat(2,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
-@media(max-width:960px){.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(max-width:960px){
+.grid-2,.grid-3{grid-template-columns:1fr}
+}
 
 .card{
-  background:#fff;
-  padding:28px;
-  border-radius:18px;
-  box-shadow:0 14px 35px rgba(2,6,23,.08);
-  transition:.3s ease;
+background:#fff;
+padding:28px;
+border-radius:18px;
+box-shadow:0 14px 35px rgba(2,6,23,.08);
+transition:.3s;
 }
+
 body.dark .card{
-  background:#111827;
-  border:1px solid #1f2937;
-  box-shadow:none;
+background:#111827;
+border:1px solid #1f2937;
+box-shadow:none;
 }
+
 .card:hover{transform:translateY(-5px)}
 
 header{
-  position:sticky;
-  top:0;
-  background:#fff;
-  border-bottom:1px solid #e2e8f0;
+position:fixed;
+top:0;
+width:100%;
+background:#fff;
+border-bottom:1px solid #e2e8f0;
+z-index:1000;
+transition:transform .4s ease;
 }
+
 body.dark header{
-  background:#0b1220;
-  border-color:#1f2937;
+background:#0b1220;
+border-color:#1f2937;
 }
+
+.header-hidden{transform:translateY(-100%)}
+
 .nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px 0;
 }
-.brand{font-weight:800}
-.links a{margin-left:18px;font-weight:600;color:#475569}
+
+.brand{font-weight:800;font-size:18px}
+
+.links{
+display:flex;
+align-items:center;
+}
+
+.links a{
+margin-left:20px;
+font-weight:600;
+color:#475569;
+text-decoration:none;
+}
+
 body.dark .links a{color:#94a3b8}
 
+.menu-toggle{
+display:none;
+font-size:22px;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.links{
+position:absolute;
+top:60px;
+left:0;
+width:100%;
+background:#fff;
+flex-direction:column;
+display:none;
+padding:20px 0;
+border-bottom:1px solid #e2e8f0;
+}
+body.dark .links{background:#0b1220;border-color:#1f2937}
+.links a{margin:12px 0}
+.links.active{display:flex}
+.menu-toggle{display:block}
+}
+
 .hero{
-  padding:100px 0 70px;
-  background:linear-gradient(135deg,#e0f2fe,#f8fafc);
+padding:130px 0 80px;
+background:linear-gradient(135deg,#e0f2fe,#f8fafc);
 }
+
 body.dark .hero{
-  background:radial-gradient(circle at 20% 30%,rgba(37,99,235,.15),transparent 60%);
+background:radial-gradient(circle at 20% 30%,rgba(37,99,235,.15),transparent 60%);
 }
+
 .hero h1{
-  font-size:clamp(2rem,1.5rem+1.8vw,3.2rem);
-  margin-bottom:15px;
+font-size:clamp(2rem,1.5rem+1.8vw,3rem);
+margin-bottom:15px;
 }
+
 .hero p{color:#475569}
 body.dark .hero p{color:#94a3b8}
 
 .btn{
-  background:#2563eb;
-  color:#fff;
-  padding:12px 18px;
-  border-radius:12px;
-  font-weight:700;
-  display:inline-block;
-  margin-top:15px;
+background:#2563eb;
+color:#fff;
+padding:12px 18px;
+border-radius:12px;
+font-weight:700;
+display:inline-block;
+margin-top:15px;
+text-decoration:none;
 }
 
 .theme-toggle{
-  cursor:pointer;
-  font-size:18px;
-  margin-left:18px;
+cursor:pointer;
+font-size:18px;
+margin-left:18px;
 }
 
-.kpi-box{
-  text-align:center;
-}
+.kpi-box{text-align:center}
 .kpi-box h3{
-  font-size:2.2rem;
-  color:#2563eb;
-  margin-bottom:5px;
+font-size:2rem;
+color:#2563eb;
+margin-bottom:5px;
 }
-body.dark .kpi-box h3{
-  color:#3b82f6;
-}
+body.dark .kpi-box h3{color:#3b82f6}
 
 footer{
-  padding:40px 0;
-  text-align:center;
-  color:#64748b;
+padding:40px 0;
+text-align:center;
+color:#64748b;
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<header id="header">
 <div class="container nav">
 <div class="brand">Alstack</div>
-<nav class="links">
-<a href="#about">About</a>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav class="links" id="navLinks">
 <a href="#services">Services</a>
 <a href="#projects">Projects</a>
 <a href="#certifications">Certifications</a>
@@ -137,22 +190,20 @@ footer{
 <div>
 <h1>Strategic Cloud Architecture Advisory for Enterprise Scale</h1>
 <p>
-Alstack advises CTOs, Cloud Leaders, and Infrastructure Teams on designing resilient, secure, and scalable cloud ecosystems.
-Our focus is long-term architecture governance, modernization strategy, and measurable optimization.
+We partner with global enterprises to design secure, resilient, and scalable cloud ecosystems. 
+Our advisory approach aligns cloud architecture with business strategy, governance, and measurable outcomes.
 </p>
 <a class="btn" href="#contact">Schedule Strategic Discussion</a>
 </div>
-
 <div class="card">
 <h3>Executive-Level Advisory</h3>
 <p>
-We define reference architectures, security baselines, automation frameworks, and hybrid cloud strategies aligned with enterprise objectives.
+Architecture governance, hybrid cloud strategy, modernization frameworks, and cost optimization programs designed for enterprise scale.
 </p>
 </div>
 </div>
 </section>
 
-<!-- KPI SECTION -->
 <section id="impact">
 <div class="container">
 <h2>Measured Enterprise Impact</h2>
@@ -177,41 +228,10 @@ We define reference architectures, security baselines, automation frameworks, an
 </div>
 </section>
 
-<!-- BUSINESS OUTCOMES -->
-<section id="outcomes">
-<div class="container">
-<h2>Business Outcomes Delivered</h2>
-<div class="grid grid-3">
-
-<div class="card">
-<h3>Operational Resilience</h3>
-<p>
-Enterprise-grade high availability, disaster recovery strategies, and platform reliability frameworks ensuring continuous business operations.
-</p>
-</div>
-
-<div class="card">
-<h3>Financial Governance</h3>
-<p>
-Structured FinOps frameworks enabling predictable cloud spending, improved budget control, and executive-level visibility.
-</p>
-</div>
-
-<div class="card">
-<h3>Accelerated Innovation</h3>
-<p>
-Modernized cloud-native platforms empowering teams to deploy faster, scale seamlessly, and innovate with reduced operational overhead.
-</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- SERVICES -->
 <section id="services">
 <div class="container">
 <h2>Services</h2>
+
 <div class="grid grid-3">
 
 <div class="card">
@@ -228,9 +248,9 @@ Modernized cloud-native platforms empowering teams to deploy faster, scale seaml
 <h3>Cloud-Native Modernization</h3>
 <ul>
 <li>Kubernetes Standardization</li>
-<li>VNF to CNF Transition Strategy</li>
 <li>Platform Engineering Enablement</li>
 <li>Observability Architecture</li>
+<li>Container Strategy & Governance</li>
 </ul>
 </div>
 
@@ -244,11 +264,49 @@ Modernized cloud-native platforms empowering teams to deploy faster, scale seaml
 </ul>
 </div>
 
+<div class="card">
+<h3>Deployment & Migration</h3>
+<ul>
+<li>Architecture design and technical review</li>
+<li>Lift-and-shift and re-platform migration programs</li>
+<li>Greenfield environments with CI/CD integration</li>
+<li>Infrastructure-as-Code (Terraform, Bicep, CloudFormation)</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Platform Engineering</h3>
+<ul>
+<li>IAM and policy baselines</li>
+<li>VNet/VPC architecture, load balancers, gateways</li>
+<li>Containers (AKS, EKS, GKE) and registries</li>
+<li>Managed databases and performance tuning</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Resource Optimization</h3>
+<ul>
+<li>Compute and storage rightsizing</li>
+<li>Elimination of idle or orphaned assets</li>
+<li>Autoscaling policies and optimization tuning</li>
+<li>Strategic modernization roadmaps</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Private Cloud & Data Backup (Homey)</h3>
+<ul>
+<li>Secure on-premise backup for home and office</li>
+<li>No subscription model — full data ownership</li>
+<li>Encrypted synchronization to mobile devices</li>
+</ul>
+</div>
+
 </div>
 </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
 <div class="container">
 <h2>Selected Projects</h2>
@@ -257,50 +315,36 @@ Modernized cloud-native platforms empowering teams to deploy faster, scale seaml
 <div class="card">
 <h3>Hybrid Cloud Architecture for Telecom Infrastructure</h3>
 <p>Designed and governed a multi-customer hybrid cloud integrating OpenStack and AWS.</p>
-<ul>
-<li>99.95% availability architecture</li>
-<li>70% deployment efficiency improvement</li>
-<li>Automated VNF/CNF lifecycle</li>
-</ul>
 </div>
 
 <div class="card">
 <h3>Kubernetes Modernization Program</h3>
-<p>Advised migration of legacy workloads into containerized environments on AWS EKS.</p>
-<ul>
-<li>Zero downtime transition</li>
-<li>Full observability stack deployment</li>
-<li>28% cost optimization achieved</li>
-</ul>
+<p>Led migration of legacy workloads into containerized platforms with zero downtime.</p>
 </div>
 
 </div>
 </div>
 </section>
 
-<!-- CERTIFICATIONS -->
 <section id="certifications">
 <div class="container">
 <h2>Certifications & Expertise</h2>
 <div class="grid grid-3">
-<div class="card"><h3>AWS Architecture</h3><p>Enterprise AWS governance frameworks.</p></div>
-<div class="card"><h3>Microsoft Azure</h3><p>Azure modernization and advisory.</p></div>
-<div class="card"><h3>OpenStack & Hybrid Cloud</h3><p>Private cloud and telecom-grade deployments.</p></div>
+<div class="card"><h3>AWS Architecture</h3></div>
+<div class="card"><h3>Microsoft Azure</h3></div>
+<div class="card"><h3>OpenStack & Hybrid Cloud</h3></div>
 </div>
 </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-<div class="container grid grid-2">
+<div class="container">
 <div class="card">
 <h2>Engage at Strategic Level</h2>
-<p>If your organization is planning modernization, hybrid transformation, or cost governance initiatives, we are prepared to advise at executive level.</p>
-<a class="btn" href="mailto:hello@example.com">Initiate Executive Conversation</a>
-</div>
-<div class="card">
-<h3>Global Advisory Engagement</h3>
-<p>We collaborate across time zones and integrate seamlessly with enterprise teams worldwide.</p>
+<p>
+If your organization is planning modernization, hybrid transformation, or cost governance initiatives, we are ready to engage at executive level.
+</p>
+<a class="btn" href="mailto:hello@example.com">Initiate Conversation</a>
 </div>
 </div>
 </section>
@@ -314,14 +358,28 @@ Modernized cloud-native platforms empowering teams to deploy faster, scale seaml
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
 
-// Theme Toggle
 function toggleTheme(){
 document.body.classList.toggle("dark");
 const icon=document.getElementById("themeIcon");
 icon.textContent=document.body.classList.contains("dark")?"☀":"🌙";
 }
 
-// Fade-in animation
+function toggleMenu(){
+document.getElementById("navLinks").classList.toggle("active");
+}
+
+let lastScroll=0;
+const header=document.getElementById("header");
+window.addEventListener("scroll",()=>{
+let current=window.pageYOffset;
+if(current>lastScroll){
+header.classList.add("header-hidden");
+}else{
+header.classList.remove("header-hidden");
+}
+lastScroll=current;
+});
+
 const sections=document.querySelectorAll("section");
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
@@ -330,7 +388,6 @@ if(entry.isIntersecting){entry.target.classList.add("visible");}
 },{threshold:0.2});
 sections.forEach(section=>observer.observe(section));
 
-// KPI Counter Animation
 const counters=document.querySelectorAll(".counter");
 counters.forEach(counter=>{
 const update=()=>{
