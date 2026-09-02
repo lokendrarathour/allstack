@@ -1,422 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Alstack — Strategic Cloud Architecture Advisory</title>
-<meta name="description" content="Enterprise cloud architecture advisory across AWS, Azure, OpenStack, hybrid and private environments."/>
-
-<style>
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
-.brand {
-  text-decoration: none;
-  color: inherit;
-}
-body{
-margin:0;
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-line-height:1.6;
-background:#f8fafc;
-color:#0f172a;
-transition:.4s ease;
-}
-
-body.dark{
-background:#0b1220;
-color:#e5e7eb;
-}
-
-.container{width:min(1120px,92%);margin:auto}
-section{padding:80px 0;opacity:0;transform:translateY(30px);transition:.7s}
-section.visible{opacity:1;transform:translateY(0)}
-
-.grid{display:grid;gap:24px}
-.grid-2{grid-template-columns:repeat(2,1fr)}
-.grid-3{grid-template-columns:repeat(3,1fr)}
-@media(max-width:960px){
-.grid-2,.grid-3{grid-template-columns:1fr}
-}
-
-.card{
-background:#fff;
-padding:28px;
-border-radius:18px;
-box-shadow:0 14px 35px rgba(2,6,23,.08);
-transition:.3s;
-}
-
-body.dark .card{
-background:#111827;
-border:1px solid #1f2937;
-box-shadow:none;
-}
-
-.card:hover{transform:translateY(-5px)}
-
-header{
-position:fixed;
-top:0;
-width:100%;
-background:#fff;
-border-bottom:1px solid #e2e8f0;
-z-index:1000;
-transition:transform .4s ease;
-}
-
-body.dark header{
-background:#0b1220;
-border-color:#1f2937;
-}
-
-.header-hidden{transform:translateY(-100%)}
-
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:14px 0;
-}
-
-.brand{font-weight:800;font-size:18px}
-
-.links{
-display:flex;
-align-items:center;
-}
-
-.links a{
-margin-left:20px;
-font-weight:600;
-color:#475569;
-text-decoration:none;
-}
-
-body.dark .links a{color:#94a3b8}
-
-.menu-toggle{
-display:none;
-font-size:22px;
-cursor:pointer;
-}
-
-@media(max-width:768px){
-.links{
-position:absolute;
-top:60px;
-left:0;
-width:100%;
-background:#fff;
-flex-direction:column;
-display:none;
-padding:20px 0;
-border-bottom:1px solid #e2e8f0;
-}
-body.dark .links{background:#0b1220;border-color:#1f2937}
-.links a{margin:12px 0}
-.links.active{display:flex}
-.menu-toggle{display:block}
-}
-
-.hero{
-padding:130px 0 80px;
-background:linear-gradient(135deg,#e0f2fe,#f8fafc);
-}
-
-body.dark .hero{
-background:radial-gradient(circle at 20% 30%,rgba(37,99,235,.15),transparent 60%);
-}
-
-.hero h1{
-font-size:clamp(2rem,1.5rem+1.8vw,3rem);
-margin-bottom:15px;
-}
-
-.hero p{color:#475569}
-body.dark .hero p{color:#94a3b8}
-
-.btn{
-background:#2563eb;
-color:#fff;
-padding:12px 18px;
-border-radius:12px;
-font-weight:700;
-display:inline-block;
-margin-top:15px;
-text-decoration:none;
-}
-
-.theme-toggle{
-cursor:pointer;
-font-size:18px;
-margin-left:18px;
-}
-
-.kpi-box{text-align:center}
-.kpi-box h3{
-font-size:2rem;
-color:#2563eb;
-margin-bottom:5px;
-}
-body.dark .kpi-box h3{color:#3b82f6}
-
-footer{
-padding:40px 0;
-text-align:center;
-color:#64748b;
-}
-</style>
-  <script>
-  function scrollToTop(e){
-  e.preventDefault();
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Alstack — Strategic Cloud Architecture & Products</title>
+  <meta name="description" content="Alstack provides strategic cloud architecture, modernization, platform engineering and cost governance services, and builds enterprise-minded software products including EMI Tracker.">
+  <meta name="theme-color" content="#f6f8fb">
+  <link rel="canonical" href="https://alstack.in/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/assets/js/config.js" defer></script>
+  <script src="/assets/js/site.js" defer></script>
 </head>
-
 <body>
-
-<header id="header">
-<div class="container nav">
-<a href="#" class="brand" onclick="scrollToTop(event)">Alstack</a>
-
-<div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-<nav class="links" id="navLinks">
-<a href="#services">Services</a>
-<a href="#projects">Projects</a>
-<a href="#certifications">Certifications</a>
-<a href="#contact">Contact</a>
-<span class="theme-toggle" onclick="toggleTheme()" id="themeIcon">🌙</span>
-</nav>
-</div>
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="/"><span class="brand-mark">AS</span><span>Alstack</span></a>
+    <nav class="nav-links" data-nav aria-label="Primary navigation">
+      <a href="#services">Services</a>
+      <a href="/products/">Products</a>
+      <a href="#projects">Projects</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+      <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-label="Open navigation">☰</button>
+    </div>
+  </div>
 </header>
 
 <main>
-
 <section class="hero">
-<div class="container grid grid-2">
-<div>
-<h1>Strategic Cloud Architecture Advisory for Enterprise Scale</h1>
-<p>
-We partner with global enterprises to design secure, resilient, and scalable cloud ecosystems. 
-Our advisory approach aligns cloud architecture with business strategy, governance, and measurable outcomes.
-</p>
-<a class="btn" href="#contact">Schedule Strategic Discussion</a>
-</div>
-<div class="card">
-<h3>Executive-Level Advisory</h3>
-<p>
-Architecture governance, hybrid cloud strategy, modernization frameworks, and cost optimization programs designed for enterprise scale.
-</p>
-</div>
-</div>
+  <div class="container hero-grid">
+    <div class="hero-copy" data-reveal>
+      <p class="eyebrow">Strategic cloud architecture</p>
+      <h1>Architecture advisory for enterprise scale.</h1>
+      <p class="lede">We partner with organizations to design secure, resilient and scalable cloud ecosystems—aligning architecture with business strategy, governance and measurable operational outcomes.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#contact">Schedule strategic discussion</a>
+        <a class="btn btn-secondary" href="/products/">Explore Alstack products</a>
+      </div>
+    </div>
+    <div class="card hero-panel" data-reveal>
+      <span class="panel-tag">Executive-level advisory</span>
+      <h2>Cloud strategy that connects architecture to outcomes.</h2>
+      <p class="muted">Architecture governance, hybrid cloud strategy, modernization frameworks and cost optimization programs designed for enterprise environments.</p>
+      <ul>
+        <li>Hybrid and multi-cloud governance</li>
+        <li>High availability and disaster recovery blueprints</li>
+        <li>Platform engineering and modernization</li>
+        <li>FinOps and resource optimization</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
-<section id="impact">
-<div class="container">
-<h2>Measured Enterprise Impact</h2>
-<div class="grid grid-3">
-
-<div class="card kpi-box">
-<h3 class="counter" data-target="70">0</h3>
-<p>% Deployment Efficiency Improvement</p>
-</div>
-
-<div class="card kpi-box">
-<h3 class="counter" data-target="99">0</h3>
-<p>% High Availability Architecture</p>
-</div>
-
-<div class="card kpi-box">
-<h3 class="counter" data-target="28">0</h3>
-<p>% Cloud Cost Optimization Achieved</p>
-</div>
-
-</div>
-</div>
+<section class="section-tight">
+  <div class="container" data-reveal>
+    <div class="proof-strip" aria-label="Enterprise focus areas">
+      <div class="proof-item"><strong>Resilience by design</strong><span>High availability, recovery planning and architecture governance.</span></div>
+      <div class="proof-item"><strong>Operational efficiency</strong><span>Automation, platform standards and repeatable deployment patterns.</span></div>
+      <div class="proof-item"><strong>Cost accountability</strong><span>Rightsizing, forecasting and governance aligned with business priorities.</span></div>
+    </div>
+  </div>
 </section>
 
-<section id="services">
-<div class="container">
-<h2>Services</h2>
-
-<div class="grid grid-3">
-
-<div class="card">
-<h3>Enterprise Architecture Strategy</h3>
-<ul>
-<li>Hybrid & Multi-Cloud Governance</li>
-<li>High Availability & DR Blueprint</li>
-<li>Security Baseline Framework</li>
-<li>Reference Architecture Design</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>Cloud-Native Modernization</h3>
-<ul>
-<li>Kubernetes Standardization</li>
-<li>Platform Engineering Enablement</li>
-<li>Observability Architecture</li>
-<li>Container Strategy & Governance</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>FinOps & Cost Governance</h3>
-<ul>
-<li>Cloud Financial Governance</li>
-<li>Reserved & Savings Strategy</li>
-<li>Rightsizing Framework</li>
-<li>Executive Cost Reporting</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>Deployment & Migration</h3>
-<ul>
-<li>Architecture design and technical review</li>
-<li>Lift-and-shift and re-platform migration programs</li>
-<li>Greenfield environments with CI/CD integration</li>
-<li>Infrastructure-as-Code (Terraform, Bicep, CloudFormation)</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>Platform Engineering</h3>
-<ul>
-<li>IAM and policy baselines</li>
-<li>VNet/VPC architecture, load balancers, gateways</li>
-<li>Containers (AKS, EKS, GKE) and registries</li>
-<li>Managed databases and performance tuning</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>Resource Optimization</h3>
-<ul>
-<li>Compute and storage rightsizing</li>
-<li>Elimination of idle or orphaned assets</li>
-<li>Autoscaling policies and optimization tuning</li>
-<li>Strategic modernization roadmaps</li>
-</ul>
-</div>
-<!--
-<div class="card">
-<h3>Private Cloud & Data Backup (Homey)</h3>
-<ul>
-<li>Secure on-premise backup for home and office</li>
-<li>No subscription model — full data ownership</li>
-<li>Encrypted synchronization to mobile devices</li>
-</ul>
-</div>
-  -->
-
-</div>
-</div>
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div><p class="eyebrow">Services</p><h2>Enterprise cloud engineering and advisory</h2><p class="lede">From architecture design and migration through platform engineering and optimization, we work as an extension of your team.</p></div>
+    </div>
+    <div class="grid grid-3">
+      <article class="card service-card" data-reveal><h3>Enterprise Architecture Strategy</h3><ul><li>Hybrid & multi-cloud governance</li><li>High availability & DR blueprint</li><li>Security baseline framework</li><li>Reference architecture design</li></ul></article>
+      <article class="card service-card" data-reveal><h3>Cloud-Native Modernization</h3><ul><li>Kubernetes standardization</li><li>Platform engineering enablement</li><li>Observability architecture</li><li>Container strategy & governance</li></ul></article>
+      <article class="card service-card" data-reveal><h3>FinOps & Cost Governance</h3><ul><li>Cloud financial governance</li><li>Reserved & savings strategy</li><li>Rightsizing framework</li><li>Executive cost reporting</li></ul></article>
+      <article class="card service-card" data-reveal><h3>Deployment & Migration</h3><ul><li>Architecture design and technical review</li><li>Lift-and-shift and re-platform programs</li><li>Greenfield environments with CI/CD</li><li>Infrastructure-as-Code delivery</li></ul></article>
+      <article class="card service-card" data-reveal><h3>Platform Engineering</h3><ul><li>IAM and policy baselines</li><li>VNet/VPC architecture and gateways</li><li>AKS, EKS and GKE enablement</li><li>Managed databases and tuning</li></ul></article>
+      <article class="card service-card" data-reveal><h3>Resource Optimization</h3><ul><li>Compute and storage rightsizing</li><li>Idle asset elimination</li><li>Autoscaling and performance tuning</li><li>Strategic modernization roadmaps</li></ul></article>
+    </div>
+  </div>
 </section>
 
-<section id="projects">
-<div class="container">
-<h2>Selected Projects</h2>
-<div class="grid grid-2">
-
-<div class="card">
-<h3>Hybrid Cloud Architecture for Telecom Infrastructure</h3>
-<p>Designed and governed a multi-customer hybrid cloud integrating OpenStack and AWS.</p>
-</div>
-
-<div class="card">
-<h3>Kubernetes Modernization Program</h3>
-<p>Led migration of legacy workloads into containerized platforms with zero downtime.</p>
-</div>
-
-</div>
-</div>
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div><p class="eyebrow">Products</p><h2>Software platforms engineered by Alstack</h2><p class="lede">We apply the same architecture mindset to products: secure foundations, clear business logic and room to scale into enterprise deployments.</p></div>
+      <a class="btn btn-secondary" href="/products/">View products</a>
+    </div>
+    <article class="card product-feature" data-reveal>
+      <div>
+        <span class="product-badge">Available on web</span>
+        <h2>EMI Tracker</h2>
+        <p>Loan and repayment portfolio management for consumers, with an architecture designed to evolve toward lender and white-label use cases.</p>
+        <div class="product-points">
+          <span class="product-point">Multi-loan portfolio</span><span class="product-point">Contractual EMI schedules</span>
+          <span class="product-point">Payment lifecycle</span><span class="product-point">Portfolio analytics</span>
+          <span class="product-point">PDF / Excel / CSV reports</span><span class="product-point">Secure account recovery</span>
+        </div>
+        <div class="actions"><a class="btn btn-primary" href="/products/emi-tracker/">Explore EMI Tracker</a><a class="btn btn-secondary" data-demo-link href="#">Live demo</a></div>
+      </div>
+      <figure class="product-shot" aria-label="EMI Tracker dashboard interface">
+        <img src="/assets/images/emi-tracker-dashboard.png" alt="EMI Tracker dashboard showing loan portfolio metrics, alerts and upcoming EMI information" loading="lazy">
+        <figcaption class="product-shot-label">Real product interface</figcaption>
+      </figure>
+    </article>
+  </div>
 </section>
 
-<section id="certifications">
-<div class="container">
-<h2>Certifications & Expertise</h2>
-<div class="grid grid-3">
-<div class="card"><h3>AWS Architecture</h3></div>
-<div class="card"><h3>Microsoft Azure</h3></div>
-<div class="card"><h3>OpenStack & Hybrid Cloud</h3></div>
-</div>
-</div>
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-head" data-reveal><div><p class="eyebrow">Selected projects</p><h2>Architecture and modernization experience</h2></div></div>
+    <div class="grid grid-2">
+      <article class="card project-card" data-reveal><h3>Hybrid Cloud Architecture for Telecom Infrastructure</h3><p>Designed and governed a multi-customer hybrid cloud integrating OpenStack and AWS.</p></article>
+      <article class="card project-card" data-reveal><h3>Kubernetes Modernization Program</h3><p>Led migration of legacy workloads into containerized platforms with a focus on continuity and controlled modernization.</p></article>
+    </div>
+  </div>
 </section>
 
-<section id="contact">
-<div class="container">
-<div class="card">
-<h2>Engage at Strategic Level</h2>
-<p>
-If your organization is planning modernization, hybrid transformation, or cost governance initiatives, we are ready to engage at executive level.
-</p>
-<a class="btn" href="mailto:hello@example.com">Initiate Conversation</a>
-</div>
-</div>
+<section class="section" id="expertise">
+  <div class="container">
+    <div class="section-head" data-reveal><div><p class="eyebrow">Certifications & expertise</p><h2>Cloud platforms and hybrid architecture</h2></div></div>
+    <div class="grid grid-3">
+      <div class="card expertise-card" data-reveal><h3>AWS Architecture</h3><p class="muted">Cloud architecture, resilience, networking and modernization.</p></div>
+      <div class="card expertise-card" data-reveal><h3>Microsoft Azure</h3><p class="muted">Enterprise architecture, platform engineering and governance.</p></div>
+      <div class="card expertise-card" data-reveal><h3>OpenStack & Hybrid Cloud</h3><p class="muted">Private cloud, hybrid integration and infrastructure modernization.</p></div>
+    </div>
+  </div>
 </section>
 
+<section class="section" id="contact">
+  <div class="container">
+    <div class="card cta-panel" data-reveal>
+      <div><p class="eyebrow">Engage at strategic level</p><h2>Planning modernization, cloud optimization or a product discussion?</h2><p>We are ready to engage on architecture strategy, delivery modernization, FinOps and enterprise-minded product deployments.</p></div>
+      <a class="btn btn-primary" data-contact-link href="mailto:hello@alstack.in">Initiate conversation</a>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer>
-© <span id="year"></span> Alstack — Strategic Cloud Architecture Advisory
-</footer>
-
-<script>
-document.getElementById("year").textContent=new Date().getFullYear();
-
-function toggleTheme(){
-document.body.classList.toggle("dark");
-const icon=document.getElementById("themeIcon");
-icon.textContent=document.body.classList.contains("dark")?"☀":"🌙";
-}
-
-function toggleMenu(){
-document.getElementById("navLinks").classList.toggle("active");
-}
-
-let lastScroll=0;
-const header=document.getElementById("header");
-window.addEventListener("scroll",()=>{
-let current=window.pageYOffset;
-if(current>lastScroll){
-header.classList.add("header-hidden");
-}else{
-header.classList.remove("header-hidden");
-}
-lastScroll=current;
-});
-
-const sections=document.querySelectorAll("section");
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){entry.target.classList.add("visible");}
-});
-},{threshold:0.2});
-sections.forEach(section=>observer.observe(section));
-
-const counters=document.querySelectorAll(".counter");
-counters.forEach(counter=>{
-const update=()=>{
-const target=+counter.getAttribute("data-target");
-const count=+counter.innerText;
-const inc=target/100;
-if(count<target){
-counter.innerText=Math.ceil(count+inc);
-setTimeout(update,20);
-}else{
-counter.innerText=target;
-}
-};
-update();
-});
-</script>
-
+<footer class="site-footer"><div class="container footer-row"><span>© <span data-year></span> Alstack — Strategic Cloud Architecture & Products</span><div class="footer-links"><a href="/products/">Products</a><a href="#services">Services</a><a data-contact-link href="mailto:hello@alstack.in">Contact</a></div></div></footer>
 </body>
 </html>
