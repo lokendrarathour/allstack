@@ -4,6 +4,8 @@
   const nav = document.querySelector('[data-nav]');
   const themeButtons = document.querySelectorAll('[data-theme-toggle]');
   const config = window.ALSTACK_CONFIG || {};
+  const emiConfig = config.emiTracker || {};
+  const sfmConfig = config.schoolFeeManager || {};
 
   function applyTheme(theme) {
     root.dataset.theme = theme;
@@ -55,12 +57,24 @@
     });
   }
 
-  document.querySelectorAll('[data-demo-link]').forEach((link) => {
-    if (config.demoUrl) {
-      link.href = config.demoUrl;
+  function disableLink(link, label, title) {
+    link.href = '#';
+    link.setAttribute('aria-disabled', 'true');
+    link.classList.add('is-disabled');
+    link.textContent = label;
+    link.title = title;
+    link.addEventListener('click', (event) => event.preventDefault());
+  }
+
+  // EMI Tracker. data-demo-link is kept for compatibility with the existing site source.
+  document.querySelectorAll('[data-demo-link], [data-emi-demo-link]').forEach((link) => {
+    const demoUrl = emiConfig.demoUrl || config.demoUrl || '';
+    const demoLabel = emiConfig.demoLabel || config.demoLabel || 'Live demo';
+    if (demoUrl) {
+      link.href = demoUrl;
       link.removeAttribute('aria-disabled');
       link.classList.remove('is-disabled');
-      link.textContent = config.demoLabel || 'Live demo';
+      link.textContent = demoLabel;
     } else {
       link.href = '#demo-status';
       link.setAttribute('aria-disabled', 'true');
@@ -69,6 +83,39 @@
       link.title = 'The controlled EMI Tracker demonstration environment is being prepared.';
       link.addEventListener('click', (event) => event.preventDefault());
     }
+  });
+
+  // School Fee Manager tenant portal.
+  document.querySelectorAll('[data-sfm-portal-link]').forEach((link) => {
+    if (sfmConfig.portalUrl) {
+      link.href = sfmConfig.portalUrl;
+      link.removeAttribute('aria-disabled');
+      link.classList.remove('is-disabled');
+      link.textContent = sfmConfig.portalLabel || 'Open school portal';
+    } else {
+      disableLink(link, 'School portal — setup in progress', 'Set schoolFeeManager.portalUrl in assets/js/config.js when the pilot tenant portal is deployed.');
+    }
+  });
+
+  // School Fee Manager Windows installer.
+  document.querySelectorAll('[data-sfm-download-link]').forEach((link) => {
+    if (sfmConfig.downloadUrl) {
+      link.href = sfmConfig.downloadUrl;
+      link.removeAttribute('aria-disabled');
+      link.classList.remove('is-disabled');
+      link.textContent = sfmConfig.downloadLabel || 'Download Windows app';
+    } else {
+      disableLink(link, 'Windows pilot — installer pending', 'Set schoolFeeManager.downloadUrl in assets/js/config.js after publishing the pilot installer.');
+    }
+  });
+
+  const metadata = {
+    '[data-sfm-version]': sfmConfig.version || 'Pending pilot build',
+    '[data-sfm-release-date]': sfmConfig.releaseDate || 'To be published',
+    '[data-sfm-sha256]': sfmConfig.sha256 || 'Published with installer'
+  };
+  Object.entries(metadata).forEach(([selector, value]) => {
+    document.querySelectorAll(selector).forEach((node) => { node.textContent = value; });
   });
 
   const revealItems = document.querySelectorAll('[data-reveal]');
